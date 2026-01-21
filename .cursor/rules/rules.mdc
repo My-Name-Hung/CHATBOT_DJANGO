@@ -1,0 +1,331 @@
+---
+description: "Full-Stack Chatbot System – Agentic AI + RAG + Vector DB + Gemini 2.5 Flash Lite"
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.jsx"
+  - "**/*.tsx"
+  - "backend/**/*"
+  - "frontend/**/*"
+alwaysApply: true
+---
+# ============================
+# RULE: FULL-STACK CHATBOT SYSTEM
+# ============================
+
+You MUST follow all rules below when generating or modifying code.
+The system must be built cleanly, maintainable, and consistent with senior-level full-stack engineering standards.
+
+---
+
+# ================================================================
+# 1 🧠 KIẾN TRÚC HỆ THỐNG (BẮT BUỘC)
+# ================================================================
+
+The entire system consists of:
+
+## FRONTEND (React + Vite + CSS)
+Clean, modular, modern UI (Linear.app / Cursor style).
+File structure required:
+
+frontend/
+src/
+components/
+ChatWindow/
+MessageItem/
+Sidebar/
+LoginForm/
+Navbar/
+pages/
+ChatPage.tsx
+LoginPage.tsx
+hooks/
+useChat.ts
+useAuth.ts
+services/
+api.ts
+utils/
+types/
+
+### UI Requirements
+- Modern, minimal, smooth.
+- Chat bubbles, loading indicator.
+- Sidebar w/ History List.
+- Login/logout flow.
+- Dark/light mode optional.
+- No component > 150 lines.
+
+---
+
+## BACKEND (NodeJS + Express + TypeScript)
+
+backend/
+src/
+controllers/
+routes/
+services/
+agents/
+rag/
+vector/
+utils/
+db/
+middlewares/
+index.ts
+
+### API MUST INCLUDE:
+- POST `/auth/register`
+- POST `/auth/login`
+- GET  `/auth/me`
+- POST `/chat/query`         → Agentic AI + RAG
+- GET  `/history/list`
+- DELETE `/history/clear`
+
+### Technical Requirements:
+- Strong typing (TypeScript).
+- Async/await only.
+- Layered architecture:
+  - Controller → Service → RAG/Agent/Vector → AI
+- Global error middleware.
+- JWT for auth.
+- Bcrypt for password hashing.
+
+---
+
+# ================================================================
+# 2 🤖 AGENTIC AI PIPELINE
+# ================================================================
+
+Chatbot MUST implement an Agent System with the pipeline:
+
+1. Detect intent
+
+2. Decide tool (RAG search, external fetch, vector search…)
+
+3. Execute selected tool(s)
+
+4. Summarize result
+
+5. Generate final answer
+File required: backend/src/agents/chatAgent.ts
+
+Agents must be modular, extensible, and follow pipeline architecture.
+
+---
+
+# ================================================================
+# 3 📚 RAG SYSTEM (PDF/TEXT/WEBSITE)
+# ================================================================
+
+You must build a complete RAG subsystem including:
+
+### File loaders:
+rag/loader.ts
+- PDF loader
+- Text loader
+- Webpage loader (scraping)
+
+### Chunking:
+rag/chunker.ts
+- Recursive text splitting
+- Configurable chunk size (~500 tokens)
+
+### Embedding:
+rag/embedder.ts
+- Uses Gemini embedding endpoint.
+- Clean API wrapper.
+
+### Retrieval:
+rag/retriever.ts
+- Similarity search top-k = 5.
+- Threshold filtering.
+
+---
+
+# ================================================================
+# 4 🔍 VECTOR DATABASE (CHROMA DEFAULT)
+# ================================================================
+
+Adapters must be provided:
+
+vector/chromaAdapter.ts
+vector/pineconeAdapter.ts
+
+Default = ChromaDB.
+
+Follow Adapter Pattern:
+- `.init()`
+- `.addDocuments()`
+- `.search(query, k)`
+- `.clear()`
+
+Embedding = Gemini API.
+
+---
+
+# ================================================================
+# 5 🌐 OPENAI STYLE API — USING GEMINI 2.5 FLASH LITE
+# ================================================================
+
+The primary LLM must be:
+
+**Model: `gemini-2.5-flash-lite`**
+
+API wrapper MUST be defined at:
+
+backend/src/services/aiService.ts
+
+When generating code:
+- Do NOT hard-code API keys.
+- Use environment variables.
+- Wrap API calls in `try/catch` cleanly.
+
+---
+
+# ================================================================
+# 6 🔐 AUTHENTICATION + USERS
+# ================================================================
+
+Backend:
+- JWT access tokens
+- Bcrypt hashed passwords
+- `/auth/me` validates token
+
+Frontend:
+- Token stored ONLY in `localStorage`
+- Auto redirect if unauthenticated
+- Logout clears token + history state
+
+### Database Models (MongoDatabase)
+User {
+id
+email
+password
+createdAt
+}
+
+ChatHistory {
+id
+userId
+messages[]
+createdAt
+}
+
+---
+
+# ================================================================
+# 7 💬 CHAT HISTORY MANAGEMENT
+# ================================================================
+
+Backend:
+- `/history/list` (GET)
+- `/history/clear` (DELETE)
+
+Frontend:
+- Show history in sidebar
+- Allow select → load previous session
+- Allow clear history
+- Auto-save messages
+
+---
+
+# ================================================================
+# 8 🎨 FRONTEND UI/UX STANDARDS
+# ================================================================
+
+Rules:
+- No inline styles.
+- Components must be:
+  - Small
+  - Reusable
+  - Easy to read
+  - Max 150 lines
+
+Design should resemble:
+- Linear.app
+- Cursor
+- Notion
+- Vercel Dashboard
+
+ChatWindow:
+- Virtualized message list
+- Smooth scroll
+- Message grouping (User vs AI)
+
+Navbar:
+- Clean
+- Icon-based
+- Logout button
+
+Sidebar:
+- Chat history list
+- New chat button
+
+---
+
+# ================================================================
+# 9 📏 CODE STYLE RULES (VERY IMPORTANT)
+# ================================================================
+
+### FRONTEND:
+- Functional Components only.
+- Hooks for logic (`useChat`, `useAuth`).
+- API calls must go through `/services/api.ts`
+- No long components.
+- Use TypeScript generics & strong types.
+
+### BACKEND:
+- Separate layers clearly:
+  - Controller: validate input + call service
+  - Service: logic only
+  - Repository/RAG/Vector: IO operations
+- Avoid repeated code.
+- Always define interfaces for data models.
+- Consistent import ordering:
+  1. Built-ins
+  2. External libs
+  3. Internal modules
+  4. Local files
+
+---
+
+# ================================================================
+# 10 📌 HOW AI SHOULD GENERATE CODE
+# ================================================================
+
+When Cursor AI generates code:
+
+MUST:
+- Follow the entire architecture described here
+- Keep code clean and readable
+- Keep files small and scoped
+- Use modern syntax (`async/await`, arrow functions)
+- Use TypeScript everywhere
+- Ensure maintainability
+
+NEVER:
+- Generate bloated files
+- Mix UI logic with business logic
+- Hard-code environment variables
+- Ignore folder structure rules
+- Combine too many responsibilities into one component
+
+---
+
+# ================================================================
+# 11 FILE REFERENCES (IMPORTANT)
+# ================================================================
+
+@backend/src/agents/chatAgent.ts  
+@backend/src/rag/loader.ts  
+@backend/src/rag/chunker.ts  
+@backend/src/rag/embedder.ts  
+@backend/src/rag/retriever.ts  
+@backend/src/vector/chromaAdapter.ts  
+@frontend/src/pages/ChatPage.tsx  
+@frontend/src/components/ChatWindow/ChatWindow.tsx  
+@frontend/src/services/api.ts
+
+---
+# ============================
+# END OF RULE FILE
+# ============================

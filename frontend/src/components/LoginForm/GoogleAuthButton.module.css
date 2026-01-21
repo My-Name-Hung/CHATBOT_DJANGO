@@ -1,0 +1,44 @@
+﻿.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.line {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  flex: 1;
+}
+
+.text {
+  font-size: 12px;
+  color: #9fb2d6;
+  letter-spacing: 0.3px;
+}
+
+.notice {
+  font-size: 13px;
+  color: #f5d372;
+  background: rgba(255, 211, 114, 0.08);
+  border: 1px solid rgba(255, 211, 114, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  line-height: 1.5;
+}
+
+.googleBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.googleBtn :global(div) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

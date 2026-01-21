@@ -1,0 +1,64 @@
+.navbar {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoImage {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-title);
+  letter-spacing: -0.5px;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userEmail {
+  font-size: 14px;
+  color: var(--color-subtitle);
+}
+
+.logoutBtn {
+  background-color: transparent;
+  color: var(--color-body);
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: var(--bg-secondary);
+  color: var(--color-title);
+  border-color: var(--color-primary);
+}

@@ -1,0 +1,10 @@
+.chatPage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chatPage > :global(*) {
+  min-height: 0;
+}

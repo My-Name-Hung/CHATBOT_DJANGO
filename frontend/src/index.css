@@ -1,0 +1,55 @@
+/* ChatSF - Neo Tech Dark Theme (Không gradient) */
+:root {
+  /* Neo Tech Dark Palette */
+  --bg-primary: #0D0F12;
+  --bg-secondary: #1A1D23;
+  --bg-card: #111418;
+  --color-primary: #4C9EFF;
+  --color-accent: #6C63FF;
+  --color-border: #2A2E35;
+  --color-title: #E6EEF8;
+  --color-subtitle: #A9B4C6;
+  --color-body: #8C96A8;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--color-body);
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
